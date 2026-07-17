@@ -4,8 +4,25 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "echo 'Phase 1: extension not scaffolded yet' && exit 0",
-    "build": "echo 'Phase 1: extension not scaffolded yet' && exit 0",
-    "typecheck": "echo 'no sources yet' && exit 0"
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@job-analyzer/shared": "workspace:*",
+    "@supabase/supabase-js": "^2.110.7",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.7.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/chrome": "^0.2.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.7.3",
+    "vite": "^8.1.5"
   }
 }
