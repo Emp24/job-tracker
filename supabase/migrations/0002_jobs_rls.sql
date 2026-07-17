@@ -11,6 +11,13 @@ alter table public.jobs enable row level security;
 -- is ever added later.
 alter table public.jobs force row level security;
 
+-- Table-level privileges. RLS decides *which rows*; these GRANTs decide *whether
+-- the role may touch the table at all*. Without them, PostgREST/authenticated
+-- requests fail with "permission denied for table jobs" before RLS is evaluated.
+-- anon is intentionally NOT granted DML — jobs require an authenticated user.
+grant select, insert, update, delete on public.jobs to authenticated;
+grant select, insert, update, delete on public.jobs to service_role;
+
 create policy "jobs_select_own"
   on public.jobs
   for select
