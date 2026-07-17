@@ -1,0 +1,11 @@
+{
+  "name": "@job-analyzer/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'Phase 4: dashboard not scaffolded yet' && exit 0",
+    "build": "echo 'Phase 4: dashboard not scaffolded yet' && exit 0",
+    "typecheck": "echo 'no sources yet' && exit 0"
+  }
+}

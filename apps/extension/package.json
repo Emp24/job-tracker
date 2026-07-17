@@ -1,0 +1,11 @@
+{
+  "name": "@job-analyzer/extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'Phase 1: extension not scaffolded yet' && exit 0",
+    "build": "echo 'Phase 1: extension not scaffolded yet' && exit 0",
+    "typecheck": "echo 'no sources yet' && exit 0"
+  }
+}
