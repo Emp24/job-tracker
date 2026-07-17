@@ -11,6 +11,8 @@
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
+    "test:functions": "deno test --allow-env --no-check --config supabase/functions/deno.json supabase/functions/",
+    "test:all": "pnpm test && pnpm test:functions",
     "sync:shared": "node scripts/sync-shared-schema.mjs",
     "web": "pnpm --filter @job-analyzer/web dev"
   },
