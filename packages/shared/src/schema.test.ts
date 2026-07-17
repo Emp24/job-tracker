@@ -4,6 +4,7 @@ import {
   JobExtractionSchema,
   ParseRequestSchema,
   extractionToDbInsert,
+  needsReviewInsert,
   RAW_TEXT_CAP,
 } from "./schema.ts";
 
@@ -76,6 +77,21 @@ test("extractionToDbInsert maps camelCase → snake_case and caps raw_text", () 
   assert.equal(row.country, null, "empty country coerced to null");
   assert.equal(row.parse_status, "ok");
   assert.equal(row.raw_text.length, RAW_TEXT_CAP, "raw_text capped");
+});
+
+test("needsReviewInsert yields a NOT-NULL-safe row that retains capped raw_text", () => {
+  const row = needsReviewInsert({
+    userId: "user-9",
+    sourceUrl: "https://example.com/job/x",
+    rawText: "y".repeat(RAW_TEXT_CAP + 100),
+  });
+
+  assert.equal(row.parse_status, "needs_review");
+  assert.ok(row.company_name.length > 0, "company_name satisfies non-empty CHECK");
+  assert.ok(row.job_title.length > 0, "job_title satisfies non-empty CHECK");
+  assert.equal(row.main_field, "Other");
+  assert.deepEqual(row.relevant_skills, []);
+  assert.equal(row.raw_text.length, RAW_TEXT_CAP, "raw_text capped for re-run");
 });
 
 test("ParseRequestSchema requires a valid URL and non-empty text", () => {

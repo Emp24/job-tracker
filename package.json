@@ -11,6 +11,7 @@
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
+    "sync:shared": "node scripts/sync-shared-schema.mjs",
     "web": "pnpm --filter @job-analyzer/web dev"
   },
   "devDependencies": {

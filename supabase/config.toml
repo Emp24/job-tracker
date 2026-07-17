@@ -29,3 +29,9 @@ enable_signup = true
 [auth.email]
 enable_signup = true
 enable_confirmations = false
+
+[functions.parse-job]
+# The platform verifies the JWT at the gateway; the function additionally calls
+# getUser() so writes run under the user's identity (RLS applies).
+verify_jwt = true
+

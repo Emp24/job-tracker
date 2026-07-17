@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "zod": "npm:zod@^4.4.3",
+    "@google/genai": "npm:@google/genai@^2.12.0",
+    "@supabase/supabase-js": "npm:@supabase/supabase-js@^2.110.7",
+    "@job-analyzer/shared": "./_shared/schema.ts"
+  }
+}

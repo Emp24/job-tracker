@@ -1,3 +1,9 @@
+// ⚠️  GENERATED FILE — DO NOT EDIT.
+// Source of truth: packages/shared/src/schema.ts
+// Regenerate with: pnpm sync:shared
+// The Supabase Edge Runtime only bundles files under supabase/functions/, so the
+// shared data contract is copied here for the parse-job function to import.
+
 import * as z from "zod"; // v4+ — resolves to npm "zod" (web/ext) or "npm:zod" (Deno via import map)
 
 /**
