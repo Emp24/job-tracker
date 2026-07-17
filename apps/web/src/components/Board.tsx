@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState, type DragEvent } from "react";
-import type { Session } from "@supabase/supabase-js";
 import { JOB_STATUSES, type JobRow, type JobStatus } from "@job-analyzer/shared";
-import { getSupabase } from "../lib/supabase";
 import { listJobs, updateJobStatus, deleteJob } from "../lib/jobs";
 import JobCard, { JOB_ID_MIME } from "./JobCard";
 import EditJobModal from "./EditJobModal";
@@ -15,7 +13,7 @@ const STATUS_ACCENT: Record<JobStatus, string> = {
   Archived: "border-t-slate-300",
 };
 
-export default function Board({ session }: { session: Session }) {
+export default function Board() {
   const [jobs, setJobs] = useState<JobRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -77,32 +75,20 @@ export default function Board({ session }: { session: Session }) {
   const needsReview = jobs.filter((j) => j.parse_status === "needs_review").length;
 
   return (
-    <div className="min-h-screen">
-      <header className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-5 py-3">
-        <div className="flex items-baseline gap-3">
-          <h1 className="text-base font-semibold text-slate-900">Job Tracker</h1>
-          <span className="text-xs text-slate-500">
-            {jobs.length} job{jobs.length === 1 ? "" : "s"}
-            {needsReview > 0 && (
-              <span className="ml-2 rounded bg-amber-100 px-1.5 py-0.5 font-medium text-amber-800">
-                {needsReview} need review
-              </span>
-            )}
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          <button onClick={() => void refresh()} className="text-xs text-slate-500 hover:text-slate-900">
-            Refresh
-          </button>
-          <span className="hidden text-xs text-slate-400 sm:inline">{session.user.email}</span>
-          <button
-            onClick={() => getSupabase().auth.signOut()}
-            className="text-xs text-slate-500 underline hover:text-slate-900"
-          >
-            Sign out
-          </button>
-        </div>
-      </header>
+    <div>
+      <div className="flex items-center justify-between px-5 py-3">
+        <span className="text-xs text-slate-500">
+          {jobs.length} job{jobs.length === 1 ? "" : "s"}
+          {needsReview > 0 && (
+            <span className="ml-2 rounded bg-amber-100 px-1.5 py-0.5 font-medium text-amber-800">
+              {needsReview} need review
+            </span>
+          )}
+        </span>
+        <button onClick={() => void refresh()} className="text-xs text-slate-500 hover:text-slate-900">
+          Refresh
+        </button>
+      </div>
 
       {error && (
         <div className="mx-5 mt-3 flex items-center justify-between rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
