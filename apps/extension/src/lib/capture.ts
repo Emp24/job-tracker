@@ -1,3 +1,5 @@
+import { browser } from "wxt/browser";
+
 export interface Capture {
   text: string;
   title: string;
@@ -37,13 +39,13 @@ export function capturePageText(cap: number): Capture {
 
 /** Inject the capture into the active tab and return its text + URL. */
 export async function captureActiveTab(cap: number): Promise<{ capture: Capture; url: string }> {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   if (!tab?.id || !tab.url) throw new Error("No active tab to capture.");
   if (!/^https?:/.test(tab.url)) {
     throw new Error("This page can't be captured — open a job posting first.");
   }
 
-  const [injection] = await chrome.scripting.executeScript({
+  const [injection] = await browser.scripting.executeScript({
     target: { tabId: tab.id },
     func: capturePageText,
     args: [cap],
