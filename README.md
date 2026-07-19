@@ -176,6 +176,7 @@ job-analyzer/
 
 **Planned**
 
+- ⏳ Cross-browser extension (Chrome + Firefox) via a [WXT migration](./docs/firefox-support.md)
 - ⏳ Dashboard URL-paste ingestion (capture without the extension)
 - ⏳ One-command hosted deployment (Supabase + Cloudflare Pages)
 - ⏳ Retry-from-`needs_review` and richer manual overrides
