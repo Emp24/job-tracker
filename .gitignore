@@ -7,6 +7,10 @@ dist/
 build/
 *.tsbuildinfo
 
+# WXT (extension build)
+.output/
+.wxt/
+
 # Env & secrets
 .env
 .env.*
