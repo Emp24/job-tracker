@@ -1,9 +1,9 @@
 import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { RAW_TEXT_CAP, ParseRequestSchema } from "@job-analyzer/shared";
-import { getSupabase } from "../lib/supabase";
-import { captureActiveTab } from "../lib/capture";
-import { saveJob, type ParseResponse } from "../lib/api";
+import { getSupabase } from "../../src/lib/supabase";
+import { captureActiveTab } from "../../src/lib/capture";
+import { saveJob, type ParseResponse } from "../../src/lib/api";
 
 const shell = "w-[340px] p-4 bg-white text-slate-800";
 
